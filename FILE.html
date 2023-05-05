@@ -1,0 +1,204 @@
+<!-- POSTFIX TO INFIX-->
+<!DOCTYPE html>
+
+
+<html lang="en-US">
+<head>
+  <h1><strong><center>INFIX TO POSTFIX/PREFIX</center></strong></h1>
+    
+<p>Postfix:
+<input type="text" id="postfixToInfix" class="inputExp" value="ABC*+D++" autofocus />
+<button onclick="postfixToInfix()" class="submitBtn">Postfix to Infix</button></p>
+<div><p>Infix:
+<span id="infixFromPostfix" class="expression">
+</span></p></div>
+</div>
+
+<div class="grid4">
+<table class="stepByStepOutput">
+<thead>
+<tr><th>Input String&emsp;&emsp;&emsp;</th><th>Postfix Expression&emsp;</th><th>Stack (Infix)</th></tr>
+
+</thead>
+<tbody id="postfixToInfixSteps">
+</tbody>
+</table>
+</div>
+<hr />
+
+<!-- PREFIX TO INFIX-->
+
+<div class="prefixToInfixTool">
+
+<div class="gridContainer">
+<div class="grid1">
+<p>Prefix:
+<input type="text" id="prefixToInfix" class="inputExp" value="2+4/5*(5-3)^5^4" />
+<button onclick="preToInfix()" class="submitBtn">Prefix to Infix</button></p>
+<div><p>Infix:
+<span id="infixFromPrefix" class="expression">
+</span></p></div>
+</div>
+<div class="grid3">
+
+</ul>
+</div>
+<div class="grid4">
+<table class="stepByStepOutput">
+<thead>
+<tr><th>Input String&emsp;&emsp;&emsp;</th><th>Prefix Expression&emsp;</th><th>Stack (Infix)</th></tr>
+</thead>
+<tbody id="prefixToInfixSteps">
+  
+</tr></tbody>
+</table>
+</div>
+
+</div>
+</div>
+ <center><p><strong>Marion Ray G. Miguel</strong></p></center>
+
+<script>
+
+function postfixToInfix() 
+{ 
+	var exp = document.getElementById('postfixToInfix').value;
+	
+	
+	var tableEntry = document.getElementById('postfixToInfixSteps');
+	tableEntry.innerHTML = "";
+	var stack="", varExp = "";
+//postfix to infix: ab*c+    ((a*b)+c)
+    var s=[]; 
+  
+    for (var i = 0; i < exp.length; i++) 
+    { 
+		stack=""; varExp="";
+        if (isOperand(exp.charAt(i))) 
+        { 
+			s.push(exp.charAt(i) + ""); 
+        } 
+  
+        else
+        { 
+            var op1 = s[s.length-1]; 
+            s.pop(); 
+            var op2 = s[s.length-1]; 
+            s.pop(); 
+            s.push("(" + op2 + exp.charAt(i) + 
+                    op1 + ")"); 
+        } 
+		
+		for(var j=0;j<s.length;j++)
+		{
+			stack += s[j];
+		}
+		
+		for(var k=i+1;k<exp.length;k++)
+		{
+			varExp += exp[k];
+		}
+		tableEntry.innerHTML += '<tr><td>'+exp+'</td><td>'+varExp+'</td><td>'+stack+'</td></tr>';
+    } 
+  
+	
+	document.getElementById('infixFromPostfix').innerHTML = s[s.length-1];
+} 
+
+function isOperand(x) 
+{ 
+    return (x >= 'a' && x <= 'z') || 
+            (x >= 'A' && x <= 'Z'); 
+} 
+
+function isOperator(x) { 
+  switch (x) { 
+  case '+': 
+  case '-': 
+  case '/': 
+  case '*': 
+    return true; 
+  } 
+  return false; 
+} 
+  
+function preToInfix() { 
+  var s = []; 
+  var stack="", varExp = "", r=1;
+  var pre_exp = document.getElementById('prefixToInfix').value;
+  var tableEntry = document.getElementById('prefixToInfixSteps');
+  tableEntry.innerHTML = "";
+//prefix to infix: *-A/BC-/AKL     ((A-(B/C))*((A/K)-L))
+
+  var length = pre_exp.length; 
+  
+  
+  // reading from right to left 
+  for (var i = length - 1; i >= 0; i--) {
+	stack=""; varExp = "";
+
+    if (isOperator(pre_exp[i])) { 
+  
+      var op1 = s[s.length-1];   s.pop(); 
+      var op2 = s[s.length-1];   s.pop(); 
+  
+
+      var temp = "(" + op1 + pre_exp[i] + op2 + ")"; 
+  
+      // Push string temp back to stack 
+      s.push(temp); 
+    } 
+
+    else { 
+
+      s.push(pre_exp[i]); 
+    } 
+	
+	for(var j=0;j<s.length;j++)
+	{
+		stack += s[j];
+	}
+	
+	for(var k=0;k<pre_exp.length-r;k++)
+	{
+		varExp += pre_exp[k];
+	}
+	r++;
+	tableEntry.innerHTML += '<tr><td>'+pre_exp+'</td><td>'+varExp+'</td><td>'+stack+'</td></tr>';
+  } 
+  
+  
+  document.getElementById('infixFromPrefix').innerHTML = s[s.length-1];
+} 
+
+window.onload =function ()
+{
+
+    preToInfix();
+    postfixToInfix();
+}
+</script>
+<script src='converters.js'></script>
+</main>
+</div>
+<div class="bottom-ad">
+<style>
+.ad_slot2, .ad_slot3, .ad_slot4{
+margin:100px 0px 0px 0px;    
+width:400px;
+height:300px;
+}    
+</style>
+<div class="bottom-right-ad">
+<ins class="adsbygoogle ad_slot2" style="display:block" data-ad-client="ca-pub-6559625374435806" data-ad-slot="3678530912" data-ad-format="auto" data-full-width-responsive="true"></ins>
+</div>
+<div class="bottom-left-ad">
+
+<ins class="adsbygoogle ad_slot3" style="display:block" data-ad-client="ca-pub-6559625374435806" data-ad-slot="8735061256" data-ad-format="auto" data-full-width-responsive="true"></ins>
+</div>
+</div>
+<div class="helpContainer">
+<script>
+
+</body>
+</html>
