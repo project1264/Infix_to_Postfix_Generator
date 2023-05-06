@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Infix to postfix</title>
+  <link rel='stylesheet' href='https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css'>
+<link rel='stylesheet' href='https://fonts.googleapis.com/icon?family=Material+Icons'><link rel="stylesheet" href="./style1.css">
+<script type="text/paperscript" src="https://codepen.io/mehmetakifakkus/pen/dvygKZ.js" canvas="myCanvas"></script><script  src="./script1.js"></script>
+</head>
+<body  >
+<h1>== Mathematical Operations using Expression Tree ==</h1>
+
+<h3>Directions</h3>
+<p>
+This app can create postfix notation of an expression and also creates expression tree.
+</p>
+<p>
+For example, expression a+(b*c) is abc*+ in postfix notation.
+</p>
+
+
+
+<h3>Prefix notation</h3>
+<p>Here, give your own expression</p>
+<input class="textbox" type="text" id="expression" value="a*(b+c)">
+
+<button class="css_button" type="button" onclick="window.evaluate()">Evaluate</button>  
+<br>
+<p>Postfix form:</p>
+<input class="textbox" id="result_exp" value="" readonly>
+
+<p>Expression Tree is created using Postfix form</p>	
+
+<canvas id="myCanvas" width="1200px" height="400px"></canvas>
+<br>
+</body>
+<!-- 	<script type="text/paperscript" src="https://codepen.io/mehmetakifakkus/pen/dvygKZ.js" canvas="myCanvas"></script>	 -->
